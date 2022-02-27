@@ -1,5 +1,3 @@
-npm inst
-
 ## My Diary
 ``npm install``
 
