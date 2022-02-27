@@ -1,0 +1,23 @@
+.dropdown {
+  position: absolute;
+  width: 100%;
+  background-color: whitesmoke;
+  right: 0;
+  top: 3.5rem;
+  z-index: 100;
+}
+
+.button {
+  padding: 10px 30px;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: thistle;
+}
+
+.line {
+  padding: 0 !important;
+  height: 1px;
+  background-color: gray;
+}

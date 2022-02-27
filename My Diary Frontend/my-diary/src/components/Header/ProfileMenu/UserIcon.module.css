@@ -1,0 +1,36 @@
+.iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+  height: 100%;
+  padding: 0rem 0.5rem;
+  position: relative;
+  min-width: 8rem;
+  max-width: 10rem;
+}
+
+.iconContainer:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+.iconContainer span {
+  color: white;
+  margin: 0.5rem;
+  margin-right: 1rem;
+  user-select: none;
+}
+
+.dropdownContainer {
+  height: 100%;
+  display: none;
+}
+
+.iconContainer:hover .dropdownContainer {
+  display: block;
+}

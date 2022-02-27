@@ -1,0 +1,29 @@
+.dateItem {
+  border-radius: 8px;
+  background-color: rgb(241, 239, 239);
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #ece7e7;
+}
+
+.dateItem span {
+  display: block;
+  text-align: center;
+}
+
+.day {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.month {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.year {
+  font-size: 0.8rem;
+}

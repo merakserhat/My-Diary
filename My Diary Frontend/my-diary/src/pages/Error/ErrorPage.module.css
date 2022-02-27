@@ -1,0 +1,28 @@
+.holder {
+  width: fit-content;
+  margin: 5rem auto;
+  max-width: 80%;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.link {
+  text-decoration: none;
+  color: darkblue;
+}
+
+.link:hover {
+  color: rgb(14, 14, 240);
+}

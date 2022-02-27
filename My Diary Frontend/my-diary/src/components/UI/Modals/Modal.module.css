@@ -1,0 +1,76 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.653);
+}
+
+.modal {
+  position: fixed;
+  top: 20vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  overflow: hidden;
+  padding: 0;
+}
+
+.header {
+  background: var(--header-color);
+  position: relative;
+  padding: 1rem;
+}
+
+.header h2 {
+  margin: 0;
+  color: white;
+}
+
+.content {
+  padding: 1rem;
+  white-space: pre-wrap;
+  font-size: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.actions button {
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  color: rgb(238, 236, 236);
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.button_red {
+  background-color: #a90906;
+}
+
+.button_red:hover {
+  background-color: #da0c08;
+  cursor: pointer;
+}
+
+.button_blue {
+  background-color: #0646a9;
+}
+
+.button_blue:hover {
+  background-color: #085ada;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}

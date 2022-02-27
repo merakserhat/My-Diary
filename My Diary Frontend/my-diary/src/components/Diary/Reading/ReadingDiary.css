@@ -1,0 +1,50 @@
+.Reading-Card {
+  padding-bottom: 5%;
+  margin: 2rem auto;
+  min-height: 30rem;
+  position: relative;
+}
+
+.ReadingCard-Header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Reading-Card__text {
+  font-size: 1.2em;
+}
+
+.Reading-Card__buttons div {
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  text-align: center;
+  padding: 5px 0px;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.443);
+  font-size: 0.8rem;
+}
+
+.Reading-Card__edit {
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.054);
+  border-radius: 0 0 0px 14px;
+}
+
+.Reading-Card__remove {
+  right: 0;
+  background-color: rgba(185, 19, 19, 0.205);
+  border-radius: 0 0 14px 0px;
+}
+
+.Reading-Card__edit:hover {
+  background-color: rgba(0, 0, 0, 0.293);
+  color: rgb(71, 70, 70);
+  cursor: pointer;
+}
+
+.Reading-Card__remove:hover {
+  background-color: rgba(185, 19, 19, 0.64);
+  color: rgba(0, 0, 0, 0.742);
+  cursor: pointer;
+}

@@ -1,0 +1,27 @@
+.dateHolder {
+  position: relative;
+  cursor: pointer;
+}
+
+.dateHolder div {
+  font-size: 1.3em;
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  user-select: none;
+}
+
+.dateHolder div:hover {
+  background-color: whitesmoke;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.hiddenDate {
+  position: absolute;
+  display: none;
+}
+
+.dateHolder:hover .hiddenDate {
+  display: block;
+}

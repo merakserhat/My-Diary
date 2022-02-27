@@ -1,0 +1,33 @@
+.input {
+  width: 100%;
+  font-weight: bold;
+  margin: auto;
+  padding: 16px 25px;
+  border: 1px solid white;
+  outline: none;
+  border-radius: 50px;
+  background-color: rgb(221, 213, 213);
+}
+
+.input:focus {
+  border: 1px solid grey;
+}
+
+.formField {
+  width: 100%;
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.errorText {
+  color: red;
+  margin: 0;
+  padding: 0%;
+}
+
+.error {
+  border: 2px solid red;
+  color: red;
+}

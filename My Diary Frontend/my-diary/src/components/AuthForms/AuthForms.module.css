@@ -1,0 +1,145 @@
+.card {
+  max-width: 25rem;
+  padding: 0;
+  background-color: red;
+  margin: 1rem auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 14px;
+  background-color: white;
+  width: 90%;
+  position: relative;
+}
+
+.titlePanel {
+  width: 100%;
+  background-color: green;
+  border-radius: 14px 14px 0 0;
+  padding: 0;
+  height: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titlePanel h2 {
+  color: white;
+}
+
+.formPanel {
+  padding: 2rem 3rem;
+}
+
+.formField {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.formField input {
+  width: 100%;
+  font-weight: bold;
+  margin: auto;
+  padding: 16px 25px;
+  border: 1px solid white;
+  outline: none;
+  border-radius: 50px;
+  background-color: rgb(221, 213, 213);
+}
+
+.formField input:focus {
+  border: 1px solid grey;
+}
+
+.formField button {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  outline: none;
+  border: 1px solid white;
+  background-color: green;
+  color: white;
+  font-weight: bolder;
+  border-radius: 50px;
+}
+.formField button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.bottomContent {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottomContent span {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.bottomContent a {
+  text-decoration: none;
+  color: green;
+  font-weight: bolder;
+}
+
+.forgetContent {
+  display: flex;
+  justify-content: right;
+  color: grey;
+}
+
+.forgetContent a {
+  text-decoration: none;
+  color: green;
+}
+
+.label {
+  display: block;
+  padding-bottom: 1rem;
+}
+
+.messageBox {
+  background-color: greenyellow;
+  color: green;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -1rem;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(73, 70, 70);
+  font-weight: bolder;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(73, 70, 70);
+  font-weight: bolder;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(73, 70, 70);
+  font-weight: bolder;
+}
+
+.top-margin {
+  margin-top: 2rem;
+}
+
+.internalMessage {
+  margin: 4rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.83);
+}
+
+.internalMessage .forgetContent {
+  justify-content: left;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
