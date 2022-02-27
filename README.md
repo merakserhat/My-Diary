@@ -7,3 +7,9 @@
 - It includes authentication using JSON web tokens.
 
 ### Some screenshots
+
+<p align="center">
+  <img src="https://github.com/merakserhat/My-Diary/blob/main/screenshots/list.png?raw=true" title="Diary List Screen">
+  <img src="https://github.com/merakserhat/My-Diary/blob/main/screenshots/read.png?raw=true" title="Reading Screen">
+  <img src="https://github.com/merakserhat/My-Diary/blob/main/screenshots/auth.png?raw=true" title="Register Screen">
+</p>
