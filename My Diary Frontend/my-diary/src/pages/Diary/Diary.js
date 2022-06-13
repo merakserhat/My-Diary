@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Route, Switch, useLocation, useRouteMatch } from "react-router";
 import DiaryList from "./DiaryList";
 import ReadDiary from "./ReadDiary";
-import WriteDiary from "./WriteDiary";
+import WriteDiaryScreen from "./WriteDiaryScreen/WriteDiaryScreen";
 
 const checkIfEdit = (currentDiary, location) => {
   if (!currentDiary) return false;
@@ -27,7 +27,7 @@ const Diary = () => {
         <DiaryList />
       </Route>
       <Route path={`${routerMatch.path}/write`}>
-        <WriteDiary diaryWillBeEdited={isEditMode ? currentDiary : null} />
+        <WriteDiaryScreen />
       </Route>
       <Route path={`${routerMatch.path}/read`}>
         <ReadDiary onReadDiary={setCurrentDiary} />

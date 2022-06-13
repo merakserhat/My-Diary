@@ -1,0 +1,91 @@
+.form {
+  position: relative;
+  min-height: 80vh;
+}
+
+.diary-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleInput {
+  border: none;
+  font-size: 1.3em;
+  font-weight: bold;
+  padding: 5px;
+  box-sizing: border-box;
+  width: 30rem;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.titleInput:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.titleInput:focus {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  outline: none;
+}
+
+.textarea {
+  resize: none;
+  font-size: 1.5em;
+  width: 100%;
+  top: 1rem;
+  height: 100%;
+  min-height: 60vh;
+  margin-top: 1rem;
+  border: none;
+  padding: 0.2rem;
+  padding: 5px;
+  box-sizing: border-box;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.textarea:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.textarea:focus {
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.saveButton {
+  background-color: #06238a; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  margin-top: 2vh;
+  float: right;
+}
+
+.saveButton:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.error {
+  border: 1px solid red;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 0 rgba(255, 0, 0, 0.342) !important;
+}
+
+.disabled {
+  background-color: grey;
+}
+
+.disabled:hover {
+  background-color: grey;
+  box-shadow: none;
+  cursor: default;
+}
