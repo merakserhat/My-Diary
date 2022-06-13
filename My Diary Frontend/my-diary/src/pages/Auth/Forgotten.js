@@ -17,7 +17,6 @@ const Forgotten = () => {
       //andleErrors(data.error);
     } else {
       setIsEmailSent(true);
-      console.log(data);
     }
   };
 

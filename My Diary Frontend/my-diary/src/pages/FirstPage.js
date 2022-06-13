@@ -9,7 +9,6 @@ const FirstPage = () => {
       },
     });
     const data = await response.json();
-    console.log(data);
   };
 
   return <div onClick={sendTestRequest}>First Page</div>;

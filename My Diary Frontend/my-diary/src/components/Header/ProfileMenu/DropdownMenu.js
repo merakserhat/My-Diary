@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { authActions } from "../../../store/AuthReducer";
+import { authActions } from "../../../store/auth/AuthReducer";
 import classes from "./DropdownMenu.module.css";
 
 const DropdownMenu = (props) => {

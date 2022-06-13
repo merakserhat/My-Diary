@@ -22,7 +22,6 @@ function reducer(state, action) {
 }
 
 const ResetForm = (props) => {
-  console.log(props.tokenError);
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
 

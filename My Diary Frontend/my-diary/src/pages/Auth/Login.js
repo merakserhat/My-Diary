@@ -2,7 +2,7 @@ import LoginForm from "../../components/AuthForms/LoginForm";
 import useAuthentication from "../../hooks/useAuthentication";
 import { useHistory, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../store/AuthReducer";
+import { authActions } from "../../store/auth/AuthReducer";
 import useErrorHandler from "../../hooks/useErrorHandler";
 
 const getUrlMessage = (location) => {

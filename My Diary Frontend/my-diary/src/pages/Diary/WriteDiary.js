@@ -88,8 +88,6 @@ const WriteDiary = (props) => {
   }, [diaryId, diary, unsubscribe, fetchDiary]);
 
   const saveHandler = async (title, date, text, isEditMode, diaryFromForm) => {
-    console.log("nurada save ettik");
-    console.log(diaryFromForm);
     if (isEditMode) {
       const data = await editDiary(
         title,

@@ -41,9 +41,7 @@ const Reset = () => {
 
       if (data.error) {
         handleTokenValidationErrors(data.error);
-        console.log(data);
       } else {
-        console.log(data);
       }
     };
 
