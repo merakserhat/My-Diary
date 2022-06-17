@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import ReadingDiary from "../../components/Diary/Reading/ReadingDiary";
-import Card from "../../components/UI/Card";
-import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import RemoveDiaryModal from "../../components/UI/Modals/RemoveDiaryModal";
-import { deleteDiary, getOneDiary } from "../../store/diary/diaryActions";
+import ReadingDiary from "../../../components/Diary/Reading/ReadingDiary";
+import Card from "../../../components/UI/Card";
+import LoadingSpinner from "../../../components/UI/LoadingSpinner";
+import RemoveDiaryModal from "../../../components/UI/Modals/RemoveDiaryModal";
+import { deleteDiary, getOneDiary } from "../../../store/diary/diaryActions";
 import {
   inputDateTommddyyyy,
   mmddyyyytoCustomDateObject,
-} from "../../utils/date-utils";
-import ErrorPage from "../Error/ErrorPage";
+} from "../../../utils/date-utils";
+import ErrorPage from "../../Error/ErrorPage";
 
 const ReadDiary = ({
   isLoading,
