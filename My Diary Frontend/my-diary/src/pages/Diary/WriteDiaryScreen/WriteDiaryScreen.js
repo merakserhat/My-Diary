@@ -36,7 +36,14 @@ const WriteDiaryScreen = ({
     formState: { errors },
     handleSubmit,
     setValue,
-  } = useForm();
+    getValues,
+  } = useForm({
+    defaultValues: {
+      title: "",
+      text: "",
+      date: getDateForInputAtt(new Date(Date.now())),
+    },
+  });
 
   const location = useLocation();
   const history = useHistory();
@@ -47,30 +54,49 @@ const WriteDiaryScreen = ({
     history.push("/diary");
   };
 
-  const onSaveError = (error) => {
-    console.log(error);
-  };
+  const onSaveError = (error) => {};
 
+  //initial
   useEffect(() => {
+    console.log("init");
     if (diaryId != null) {
       getOneDiaryFunc(
         { id: diaryId },
         () => {},
         (error) => {}
       );
+    } else {
+      getOneDiaryFunc(
+        { date: inputDateTommddyyyy(getValues("date")) },
+        () => {},
+        (error) => {}
+      );
     }
   }, []);
 
+  const fetchDiaryWhenDateChanges = (date) => {
+    console.log("fetch date: ", getValues("date"));
+    getOneDiaryFunc(
+      { date: inputDateTommddyyyy(date ?? getValues("date")) },
+      () => {},
+      (error) => {}
+    );
+  };
+
   useEffect(() => {
-    if (diaryId != null && diary?._id === diaryId) {
+    console.log(diary);
+    if (diary != null) {
       setValue("title", diary.title);
       setValue("text", diary.text);
       setValue("date", getDateForInputAtt(new Date(diary.date)));
+    } else {
+      setValue("title", "");
+      setValue("text", "");
     }
   }, [diary]);
 
   const submitHandler = (data, e) => {
-    if (diaryId == null) {
+    if (diary == null) {
       writeDiaryFunc(
         {
           date: inputDateTommddyyyy(data.date),
@@ -81,7 +107,13 @@ const WriteDiaryScreen = ({
         onSaveError
       );
     } else {
-      editDiaryFunc({});
+      console.log("edit");
+      editDiaryFunc({
+        date: inputDateTommddyyyy(data.date),
+        text: data.text,
+        title: data.title,
+        diaryId: diary._id,
+      });
     }
   };
 
@@ -108,6 +140,9 @@ const WriteDiaryScreen = ({
             min={getDateForInputAtt(null, true)}
             disabled={disableDate}
             {...register("date", { valueAsDate: true })}
+            onChange={(event) => {
+              fetchDiaryWhenDateChanges(event.target.value);
+            }}
           />
         </div>
         <textarea

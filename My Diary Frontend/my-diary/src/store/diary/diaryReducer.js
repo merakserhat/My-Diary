@@ -55,6 +55,7 @@ function diaryReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoading: false,
+        diary: null,
         error: action.payload?.error,
       };
     //delete

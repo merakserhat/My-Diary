@@ -27,8 +27,6 @@ export function* GET_ONE_DIARY({
       }),
     });
 
-    console.log(response);
-
     yield put(getOneDiarySuccess(response));
 
     onSuccess?.({
