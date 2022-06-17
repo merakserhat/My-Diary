@@ -10,7 +10,7 @@ const api = axios.create({
   },
 });
 
-const setAuthTokenToServiceInstance = (token) => {
+export const setAuthTokenToServiceInstance = (token) => {
   if (token) {
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
   } else {
@@ -20,7 +20,11 @@ const setAuthTokenToServiceInstance = (token) => {
 
 async function makeRequest(method, pathname, data, options = {}) {
   const body = method === "get" || !data ? {} : { data };
-  const requestUrl = url.format({ pathname, ...options });
+  const params = Object.keys(options)
+    .map((key) => key + "=" + options[key])
+    .join("&");
+
+  const requestUrl = `${pathname}?${params}`;
   const reqObj = {
     method,
     url: requestUrl,

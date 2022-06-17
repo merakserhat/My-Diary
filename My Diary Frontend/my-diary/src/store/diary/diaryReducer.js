@@ -31,7 +31,7 @@ function diaryReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoading: false,
-        diary: action.payload.data,
+        diary: action.payload?.data,
       };
     case diaryActionTypes.WRITE_DIARY_ERROR:
       return {
@@ -49,7 +49,7 @@ function diaryReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         isLoading: false,
-        diary: action.payload.data,
+        diary: action.data,
       };
     case diaryActionTypes.GET_ONE_DIARY_ERROR:
       return {

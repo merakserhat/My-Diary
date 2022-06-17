@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setAuthTokenToServiceInstance } from "../../service";
 
 let initialState = {
   authenticated: false,
@@ -11,6 +12,7 @@ const storedState = localStorage.getItem("authState");
 
 if (storedState) {
   initialState = JSON.parse(storedState);
+  setAuthTokenToServiceInstance(initialState.token);
 }
 
 const authSlice = createSlice({
@@ -23,6 +25,7 @@ const authSlice = createSlice({
       state.authenticated = true;
       state.userName = action.payload.email.split("@")[0];
       localStorage.setItem("authState", JSON.stringify(state));
+      setAuthTokenToServiceInstance(action.payload.token);
     },
     logout(state) {
       state.token = null;
@@ -30,6 +33,7 @@ const authSlice = createSlice({
       state.authenticated = false;
       state.userName = false;
       localStorage.setItem("authState", JSON.stringify(state));
+      setAuthTokenToServiceInstance(null);
     },
   },
 });

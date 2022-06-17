@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import Card from "../../../components/UI/Card";
 import LoadingSpinner from "../../../components/UI/LoadingSpinner";
 import {
   getDateForInputAtt,
+  inputDateTommddyyyy,
   isBeforeYesterday,
 } from "../../../utils/date-utils";
 import classes from "./WriteDiaryScreen.module.css";
@@ -24,30 +25,65 @@ const detectEditMode = (location) => {
 
 const WriteDiaryScreen = ({
   isLoading,
+  diary,
   editDiaryFunc,
   writeDiaryFunc,
   getOneDiaryFunc,
   diaryWillBeEdited,
 }) => {
-  const location = useLocation();
-
-  const diaryId = detectEditMode(location);
-
-  useEffect(() => {
-    getOneDiaryFunc(
-      { id: diaryId },
-      () => {},
-      (error) => {}
-    );
-  }, []);
-
   const {
     register,
     formState: { errors },
     handleSubmit,
+    setValue,
   } = useForm();
 
-  const submitHandler = () => {};
+  const location = useLocation();
+  const history = useHistory();
+
+  const diaryId = detectEditMode(location);
+
+  const onSaveSuccess = () => {
+    history.push("/diary");
+  };
+
+  const onSaveError = (error) => {
+    console.log(error);
+  };
+
+  useEffect(() => {
+    if (diaryId != null) {
+      getOneDiaryFunc(
+        { id: diaryId },
+        () => {},
+        (error) => {}
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (diaryId != null && diary?._id === diaryId) {
+      setValue("title", diary.title);
+      setValue("text", diary.text);
+      setValue("date", getDateForInputAtt(new Date(diary.date)));
+    }
+  }, [diary]);
+
+  const submitHandler = (data, e) => {
+    if (diaryId == null) {
+      writeDiaryFunc(
+        {
+          date: inputDateTommddyyyy(data.date),
+          text: data.text,
+          title: data.title,
+        },
+        onSaveSuccess,
+        onSaveError
+      );
+    } else {
+      editDiaryFunc({});
+    }
+  };
 
   const disableDate =
     diaryWillBeEdited && isBeforeYesterday(new Date(diaryWillBeEdited.date));
@@ -71,12 +107,13 @@ const WriteDiaryScreen = ({
             max={getDateForInputAtt()}
             min={getDateForInputAtt(null, true)}
             disabled={disableDate}
+            {...register("date", { valueAsDate: true })}
           />
         </div>
         <textarea
           placeholder={"Write your diary..."}
           className={`${classes.textarea} ${errors.diary && classes.error}`}
-          {...register("diary", { required: "Your diary can not be empty" })}
+          {...register("text", { required: "Your diary can not be empty" })}
         />
         <button className={`${classes.saveButton} `}>
           {diaryWillBeEdited ? "Update" : "Save"}
@@ -89,6 +126,7 @@ const WriteDiaryScreen = ({
 
 const mapStateToProps = ({ diary }) => ({
   isLoading: diary?.isLoading || false,
+  diary: diary?.diary || null,
 });
 
 const mapDispatchToProps = {
