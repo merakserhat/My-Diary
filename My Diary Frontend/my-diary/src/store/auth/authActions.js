@@ -15,9 +15,9 @@ export const loginError = () => {
   };
 };
 
-export const loginSuccess = (data) => ({
+export const loginSuccess = (payload) => ({
   type: authActionTypes.LOGIN_SUCCESS,
-  data,
+  payload,
 });
 
 export const register = (payload, onSuccess, onError) => ({
@@ -81,4 +81,8 @@ export const resetPasswordError = () => ({
 export const resetPasswordSuccess = (data) => ({
   type: authActionTypes.RESET_PASSWORD_SUCCESS,
   data,
+});
+
+export const logout = () => ({
+  type: authActionTypes.LOGOUT,
 });

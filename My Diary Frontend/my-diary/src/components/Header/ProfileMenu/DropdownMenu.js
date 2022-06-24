@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { authActions } from "../../../store/auth/AuthReducer";
+import { logout } from "../../../store/auth/authActions";
+import store from "../../../store/store";
 import classes from "./DropdownMenu.module.css";
 
 const DropdownMenu = (props) => {
@@ -38,7 +39,7 @@ const DropdownMenu = (props) => {
     {
       title: "Log out",
       action: () => {
-        dispatch(authActions.logout({}));
+        store.dispatch({ ...logout() });
       },
     },
   ];

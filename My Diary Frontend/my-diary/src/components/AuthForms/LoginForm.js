@@ -1,4 +1,3 @@
-import { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./AuthForms.module.css";
@@ -6,72 +5,58 @@ import ChangeAuthType from "./components/ChangeAuthType";
 import Input from "./components/Input";
 import MessageBox from "./components/MessageBox";
 import TitlePanel from "./components/TitlePanel";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
-const initialErrorState = {
-  emailError: null,
-  passwordError: null,
-};
+const LoginForm = ({ isLoading, message, onValidSubmit }) => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "email":
-      return { ...state, emailError: action.message };
-    case "password":
-      return { ...state, passwordError: action.message };
-    default:
-      throw new Error("Action type is not recognized");
-  }
-}
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
-const LoginForm = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [errorState, dispatchError] = useReducer(reducer, initialErrorState);
-  props.setDispatchError(dispatchError);
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-    props.onValidSubmit({
-      email,
-      password,
-    });
+  const submitHandler = (data, e) => {
+    console.log("data", data);
+    onValidSubmit(data);
   };
 
   return (
     <div className={classes.card}>
-      {props.isLoading && <LoadingSpinner />}
+      {isLoading && <LoadingSpinner />}
       <TitlePanel title="Log in" />
-      {props.message && <MessageBox message={props.message} />}
+      {message && <MessageBox message={message} />}
       <div className={classes.formPanel}>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={handleSubmit(submitHandler)}>
           <Input
             type="email"
             placeholder="Enter e-mail"
+            register={register("email", {
+              required: "E mail can not be empty",
+            })}
             required
-            value={email}
-            onChange={setEmail}
-            error={errorState.emailError}
-            onFocus={() =>
-              dispatchError({
-                type: "email",
-                message: null,
-              })
-            }
+            error={errors.email}
           />
           <Input
             type="password"
             placeholder="Enter password"
+            register={register("password", {
+              required: "Password can not be empty",
+              minLength: {
+                value: 6,
+                message: "This password is too short.",
+              },
+            })}
             required
-            value={password}
-            onChange={setPassword}
-            error={errorState.passwordError}
-            onFocus={() =>
-              dispatchError({
-                type: "password",
-                message: null,
-              })
-            }
+            error={errors.password}
           />
           <div className={classes.forgetContent}>
             <span>

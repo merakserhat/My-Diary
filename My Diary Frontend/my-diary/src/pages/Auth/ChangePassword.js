@@ -2,7 +2,7 @@ import ChangePasswordForm from "../../components/AuthForms/ChangePasswordForm";
 import useAuthentication from "../../hooks/useAuthentication";
 import { useHistory, useLocation } from "react-router";
 import { useDispatch } from "react-redux";
-import { authActions } from "../../store/auth/AuthReducer";
+import { authActions } from "../../store/auth/authReducer";
 import useErrorHandler from "../../hooks/useErrorHandler";
 
 const ChangePassword = () => {

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
 import { setAuthTokenToServiceInstance } from "../../service";
+import authActionTypes from "./authActionTypes";
 
 let INITIAL_STATE = {
   authenticated: false,
@@ -9,56 +9,81 @@ let INITIAL_STATE = {
   isLoading: false,
 };
 
+const storedState = localStorage.getItem("authState");
+
+if (storedState) {
+  INITIAL_STATE = JSON.parse(storedState);
+  setAuthTokenToServiceInstance(INITIAL_STATE.token);
+}
+
 function authReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     //login
-    case diaryActionTypes.LOGIN:
+    case authActionTypes.LOGIN:
       return {
         ...state,
         isLoading: true,
       };
-    case diaryActionTypes.LOGIN_SUCCESS:
-      return {
+    case authActionTypes.LOGIN_SUCCESS: {
+      const newState = {
         ...state,
+        email: action.payload?.email,
+        token: action.payload?.token,
+        authenticated: true,
         isLoading: false,
       };
-    case diaryActionTypes.LOGIN_ERROR:
+      localStorage.setItem("authState", JSON.stringify(newState));
+      setAuthTokenToServiceInstance(action.payload?.token);
+      console.log(action);
+
+      return newState;
+    }
+    case authActionTypes.LOGIN_ERROR:
       return {
         ...state,
         isLoading: false,
-        error: action.payload?.error,
+        authenticated: false,
+        error: action.error,
       };
     //register
-    case diaryActionTypes.REGISTER:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case diaryActionTypes.REGISTER_SUCCESS:
+    case authActionTypes.REGISTER:
       return {
         ...state,
         isLoading: false,
-        diary: action.payload?.data,
       };
-    case diaryActionTypes.REGISTER_ERROR:
+    case authActionTypes.REGISTER_SUCCESS: {
+      const newState = {
+        ...state,
+        email: action.email,
+        token: action.token,
+        authenticated: true,
+        isLoading: false,
+      };
+      localStorage.setItem("authState", JSON.stringify(newState));
+      setAuthTokenToServiceInstance(action.token);
+
+      return newState;
+    }
+
+    case authActionTypes.REGISTER_ERROR:
       return {
         ...state,
         isLoading: false,
-        error: action.payload?.error,
+        error: action.error,
       };
     //get reset link
-    case diaryActionTypes.GET_RESET_LINK:
+    case authActionTypes.GET_RESET_LINK:
       return {
         ...state,
         isLoading: true,
       };
-    case diaryActionTypes.GET_RESET_LINK_SUCCESS:
+    case authActionTypes.GET_RESET_LINK_SUCCESS:
       return {
         ...state,
         isLoading: false,
         diary: action.data,
       };
-    case diaryActionTypes.GET_RESET_LINK_ERROR:
+    case authActionTypes.GET_RESET_LINK_ERROR:
       return {
         ...state,
         isLoading: false,
@@ -66,39 +91,55 @@ function authReducer(state = INITIAL_STATE, action) {
         error: action.payload?.error,
       };
     //validate reset token
-    case diaryActionTypes.VALIDATE_RESET_TOKEN:
+    case authActionTypes.VALIDATE_RESET_TOKEN:
       return {
         ...state,
         isLoading: true,
       };
-    case diaryActionTypes.VALIDATE_RESET_TOKEN_SUCCES:
+    case authActionTypes.VALIDATE_RESET_TOKEN_SUCCES:
       return {
         ...state,
         isLoading: false,
       };
-    case diaryActionTypes.VALIDATE_RESET_TOKEN_ERROR:
+    case authActionTypes.VALIDATE_RESET_TOKEN_ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload?.error,
       };
     //reset password
-    case diaryActionTypes.RESET_PASSWORD:
+    case authActionTypes.RESET_PASSWORD:
       return {
         ...state,
         isLoading: true,
       };
-    case diaryActionTypes.RESET_PASSWORD_SUCCES:
+    case authActionTypes.RESET_PASSWORD_SUCCES:
       return {
         ...state,
         isLoading: false,
       };
-    case diaryActionTypes.RESET_PASSWORD_ERROR:
+    case authActionTypes.RESET_PASSWORD_ERROR:
       return {
         ...state,
         isLoading: false,
         error: action.payload?.error,
       };
+    //logout
+    case authActionTypes.LOGOUT: {
+      const newState = {
+        ...state,
+        isLoading: false,
+        authenticated: false,
+        token: null,
+        email: null,
+        userName: null,
+      };
+
+      localStorage.setItem("authState", JSON.stringify(newState));
+      setAuthTokenToServiceInstance(null);
+      return newState;
+    }
+
     default:
       return state;
   }
@@ -107,12 +148,7 @@ function authReducer(state = INITIAL_STATE, action) {
 export default authReducer;
 
 /*
-const storedState = localStorage.getItem("authState");
 
-if (storedState) {
-  initialState = JSON.parse(storedState);
-  setAuthTokenToServiceInstance(initialState.token);
-}
 
 const authSlice = createSlice({
   name: "auth",

@@ -14,6 +14,7 @@ const authActionTypes = {
   RESET_PASSWORD: "auth/reset-password",
   RESET_PASSWORD_SUCCESS: "auth/edit-success",
   RESET_PASSWORD_ERROR: "auth/edit-error",
+  LOGOUT: "auth/logout",
 };
 
 export default authActionTypes;

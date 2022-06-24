@@ -21,8 +21,11 @@ export function* LOGIN({
   onError,
 }) {
   try {
-    const response = yield call(Service.post, "/auth/login", payload);
-
+    const response = yield call(Service.post, "/auth/login", {
+      email,
+      password,
+    });
+    console.log("login response", response);
     yield put(loginSuccess(response));
 
     onSuccess?.({
@@ -41,7 +44,7 @@ export function* REGISTER({
   onError,
 }) {
   try {
-    yield call(Service.put, `/auth/register`, payload);
+    yield call(Service.put, `/auth/register`, { email, password });
     yield put(registerSuccess());
     onSuccess?.();
   } catch (error) {
@@ -56,7 +59,7 @@ export function* GET_RESET_LINK({
   onError,
 }) {
   try {
-    yield call(Service.post, "/auth/get-reset-link", payload);
+    yield call(Service.post, "/auth/get-reset-link", { email });
     yield put(getResetLinkSuccess());
     onSuccess?.();
   } catch (error) {
@@ -82,7 +85,7 @@ export function* RESET_PASSWORD({
   onError,
 }) {
   try {
-    yield call(Service.put, "/auth/reset-password", payload);
+    yield call(Service.put, "/auth/reset-password", { password, token });
     yield put(resetPasswordSuccess());
     onSuccess?.();
   } catch (error) {
