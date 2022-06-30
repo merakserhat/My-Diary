@@ -29,6 +29,7 @@ function authReducer(state = INITIAL_STATE, action) {
         ...state,
         email: action.payload?.email,
         token: action.payload?.token,
+        userName: action.payload?.email.split("@")[0],
         authenticated: true,
         isLoading: false,
       };
@@ -52,17 +53,10 @@ function authReducer(state = INITIAL_STATE, action) {
         isLoading: false,
       };
     case authActionTypes.REGISTER_SUCCESS: {
-      const newState = {
+      return {
         ...state,
-        email: action.email,
-        token: action.token,
-        authenticated: true,
         isLoading: false,
       };
-      localStorage.setItem("authState", JSON.stringify(newState));
-      setAuthTokenToServiceInstance(action.token);
-
-      return newState;
     }
 
     case authActionTypes.REGISTER_ERROR:

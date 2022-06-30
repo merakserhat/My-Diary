@@ -54,10 +54,6 @@ const Login = ({ loginFunc, isLoading }) => {
     );
   };
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   return (
     <div className={classes.card}>
       {isLoading && <LoadingSpinner />}

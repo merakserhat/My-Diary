@@ -59,7 +59,7 @@ const userExists = async (email, res) => {
   const oldUser = await User.findOne({ email });
 
   if (oldUser) {
-    res.json({
+    res.status(401).json({
       error: {
         type: "email",
         message: "Email already exists",
